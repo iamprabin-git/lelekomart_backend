@@ -30,3 +30,8 @@ CRUD operation (Create, Read, Update, Delete)
 3. URL
 4. Event
 5. HTTP
+
+## Status
+1. 200 - range => Success
+2. 400 - range => Error by client
+3. 500 - range => Error by server
