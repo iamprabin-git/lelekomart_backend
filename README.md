@@ -35,3 +35,63 @@ CRUD operation (Create, Read, Update, Delete)
 1. 200 - range => Success
 2. 400 - range => Error by client
 3. 500 - range => Error by server
+
+## MongoDB
+- Non-relational database
+- Collection (Table)
+- Document (Row)
+- Field (Column)
+
+### MongoDB Tools
+- Shell - Terminal
+- Compass - Local GUI
+- Atlas - Global URL
+
+### MongoDB commands
+1. mongosh : Connect with local MongoDB instance
+2. show dbs : Show all database
+3. cls : Clear screen
+4. use <dbname> : Switch to a database Or create new DB if doesn't exist
+5. show collections: Show list of collections (table) in a DB
+
+Users
+id, name, age, address, phone
+1, ram, 30, dharan, 89746541
+2, hari, 35, null, null
+
+### Query
+**Create**
+1. insertOne
+ - db.<collectionName>.insertOne()
+ - For e.g: db.users.insertOne({name:"John"})
+
+2. insertMany
+- db.<collectionName>.insertMany()
+- For e.g: db.users.insertMany([{name:"Jerry"}, {name:"Tom"}])
+
+**Read**
+1. find()
+- db.<collectionName>.find()
+- For e.g: db.users.find()
+
+2. find(<filterObject>)
+- db.users.find({name:"John"})
+
+**Update**
+1. updateOne
+- db.<collectionName>.updateOne()
+- For e.g: db.users.updateOne({name:"Ram"} , {$set: {age: 35}})
+
+**Delete**
+1. deleteOne()
+- db.<collectionName>.deleteOne()
+- For e.g: db.users.deleteOne({name:"Ram"})
+
+**Complex Filter**
+1. $gt/$gte
+- db.users.find({age: {$gt: 20}})
+
+2. $lt/$lte
+- db.users.find({age: {$lte: 20}})
+
+3. $eq/$ne : equal/not equal
