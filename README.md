@@ -42,6 +42,9 @@ CRUD operation (Create, Read, Update, Delete)
 - Document (Row)
 - Field (Column)
 
+- Schema (Data structure)
+- Model
+
 ### MongoDB Tools
 - Shell - Terminal
 - Compass - Local GUI
@@ -53,11 +56,6 @@ CRUD operation (Create, Read, Update, Delete)
 3. cls : Clear screen
 4. use <dbname> : Switch to a database Or create new DB if doesn't exist
 5. show collections: Show list of collections (table) in a DB
-
-Users
-id, name, age, address, phone
-1, ram, 30, dharan, 89746541
-2, hari, 35, null, null
 
 ### Query
 **Create**

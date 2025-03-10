@@ -1,26 +1,39 @@
 // Database related tasks
-import fs from "fs";
+import Product from "../models/Product.js";
 
-const rawProducts = fs.readFileSync("./data/products.json", "utf8");
+const getAllProducts = async () => {
+  const products = await Product.find();
 
-const products = JSON.parse(rawProducts);
-
-const getAllProducts = () => {
   return products;
 };
 
-const getProductById = (id) => {
-  const product = products.find((p) => p.id == id);
+const getProductById = async (id) => {
+  const product = await Product.findById(id);
 
   return product;
 };
 
-const createProduct = (data) => {
-  products.push(data);
-
-  fs.writeFileSync("./data/products.json", JSON.stringify(products));
-
-  return "Data added successfully";
+const createProduct = async (data) => {
+  return await Product.create(data);
 };
 
-export default { getAllProducts, getProductById, createProduct };
+const updateProduct = async (id, data) => {
+  return await Product.findByIdAndUpdate(id, data);
+};
+
+const deleteProduct = async (id) => {
+  await Product.findByIdAndDelete(id);
+};
+
+const getCategories = async () => {
+  return await Product.distinct("category");
+};
+
+export default {
+  getAllProducts,
+  getProductById,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+  getCategories,
+};
