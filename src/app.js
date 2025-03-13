@@ -3,14 +3,18 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 
 import productRoutes from "./routes/productRoute.js";
+import authRoutes from "./routes/authRoute.js";
 import userRoutes from "./routes/userRoute.js";
 import connectDB from "./config/database.js";
+import logger from "./middlewares/logger.js";
 
 dotenv.config();
 
 const app = express();
 
 connectDB();
+
+app.use(logger);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -27,6 +31,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/auth/login", authRoutes);
 
 app.listen(port, () => {
   console.log(`Server started at port ${port}...`);
