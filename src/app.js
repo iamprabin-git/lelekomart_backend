@@ -31,7 +31,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
-app.use("/api/auth/login", authRoutes);
+app.use("/api/auth", authRoutes);
 
 app.listen(port, () => {
   console.log(`Server started at port ${port}...`);

@@ -93,3 +93,19 @@ CRUD operation (Create, Read, Update, Delete)
 - db.users.find({age: {$lte: 20}})
 
 3. $eq/$ne : equal/not equal
+
+## Encryption
+Hello -> asdfasgf : Encryption
+asdfadsfasd -> Hello : Decryption
+
+## Hashing
+- One way encryption
+Hello -> safdasdfasfdsdfg
+Hello -> safdasdfasfdsdfg
+
+## Salt
+- Extra addition character added to hash
+Hello -> 123456789safdasdfasfdsdfg
+Hello -> 987654321iorpoitjwerptwje
+
+## JSON web token JWT
