@@ -109,3 +109,10 @@ Hello -> 123456789safdasdfasfdsdfg
 Hello -> 987654321iorpoitjwerptwje
 
 ## JSON web token JWT
+- Create a unique token of auth (logged in) user.
+
+- Header | Body | Signature
+- asdfasdfasdf.asdfasdfasfasdfasfd.asdfgsadfasdfasdf
+
+## Session Storage, Local Storage, Cookie
+- Store the created token
