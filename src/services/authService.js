@@ -45,6 +45,7 @@ const register = async (data) => {
     phone: data.phone,
     email: data.email,
     password: hashedPassword,
+    roles: data.roles,
   });
 };
 

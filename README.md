@@ -116,3 +116,24 @@ Hello -> 987654321iorpoitjwerptwje
 
 ## Session Storage, Local Storage, Cookie
 - Store the created token
+
+1. Cookie: 
+    - Can be stored in both server and browser
+    - 4KB 
+    - Available throughout the browser
+    - Expiry date can be set
+2. Session: 
+    - Can be stored in browser only
+    - 5MB
+    - Available in only one tab
+    - Expires on tab close
+3. Local storage: 
+    - Can be stored in browser only
+    - 5MB to 10MB
+    - Available throughout the browser
+    - Never expires
+
+1. Generate JWT token
+2. Store JWT token in Cookie
+3. Get the token from cookie
+4. Verify the JWT token
