@@ -1,3 +1,4 @@
+import { ROLE_ADMIN } from "../constants/roles.js";
 import productService from "../services/productService.js";
 
 const getAllProducts = async (req, res) => {
@@ -21,8 +22,10 @@ const getProductById = async (req, res) => {
 };
 
 const createProduct = async (req, res) => {
+  const userId = req.user.id;
+
   try {
-    const data = await productService.createProduct(req.body);
+    const data = await productService.createProduct(req.body, userId);
 
     res.send(data);
   } catch (error) {
@@ -32,8 +35,17 @@ const createProduct = async (req, res) => {
 
 const updateProduct = async (req, res) => {
   const id = req.params.id;
+  const user = req.user;
 
   try {
+    const product = await productService.getProductById(id);
+
+    if (!product) return res.status(404).send("Product not found.");
+
+    if (product.createdBy != user.id && !user.roles.includes(ROLE_ADMIN)) {
+      return res.status(403).send("Access denied");
+    }
+
     const data = await productService.updateProduct(id, req.body);
 
     res.send(data);
