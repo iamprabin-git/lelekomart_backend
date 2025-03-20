@@ -56,6 +56,14 @@ const getAllUsers = async () => {
   return users;
 };
 
+const getAllCustomers = async () => {
+  const users = await User.find({
+    roles: [ROLE_USER],
+  });
+
+  return users;
+};
+
 const getUserById = async (id) => {
   const user = await User.findById(id);
 
@@ -69,4 +77,5 @@ export default {
   deleteUser,
   getAllUsers,
   getUserById,
+  getAllCustomers,
 };

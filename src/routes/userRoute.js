@@ -3,6 +3,7 @@ import {
   createMerchant,
   createUser,
   deleteUser,
+  getAllCustomers,
   getAllUsers,
   getUserById,
   updateUser,
@@ -25,7 +26,9 @@ router.put("/:id", auth, roleBasedAuth(ROLE_ADMIN), updateUser);
 // /api/users/:id
 router.delete("/:id", auth, roleBasedAuth(ROLE_ADMIN), deleteUser);
 
-router.get("/", auth, roleBasedAuth(ROLE_MERCHANT), getAllUsers);
+router.get("/", auth, roleBasedAuth(ROLE_ADMIN), getAllUsers);
+
+router.get("/customers", auth, roleBasedAuth(ROLE_MERCHANT), getAllCustomers);
 
 router.get("/:id", auth, getUserById);
 

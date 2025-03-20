@@ -51,6 +51,14 @@ const getAllUsers = async (_, res) => {
   res.json(formattedUsers);
 };
 
+const getAllCustomers = async (_, res) => {
+  const users = await userService.getAllCustomers();
+
+  const formattedUsers = users.map((user) => formatUserData(user));
+
+  res.json(formattedUsers);
+};
+
 const getUserById = async (req, res) => {
   const id = req.params.id;
   const loggedInUser = req.user;
@@ -77,4 +85,5 @@ export {
   deleteUser,
   getAllUsers,
   getUserById,
+  getAllCustomers,
 };
