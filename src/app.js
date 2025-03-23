@@ -7,12 +7,19 @@ import authRoutes from "./routes/authRoute.js";
 import userRoutes from "./routes/userRoute.js";
 import connectDB from "./config/database.js";
 import logger from "./middlewares/logger.js";
+import connectCloudinary from "./config/cloudinary.js";
+import multer from "multer";
 
 dotenv.config();
 
 const app = express();
 
 connectDB();
+connectCloudinary();
+
+const upload = multer({
+  storage: multer.memoryStorage(),
+});
 
 app.use(logger);
 
@@ -30,7 +37,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/products", productRoutes);
-app.use("/api/users", userRoutes);
+app.use("/api/users", upload.single("image"), userRoutes);
 app.use("/api/auth", authRoutes);
 
 app.listen(port, () => {

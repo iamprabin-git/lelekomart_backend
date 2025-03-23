@@ -78,6 +78,19 @@ const getUserById = async (req, res) => {
   }
 };
 
+const uploadProfileImage = async (req, res) => {
+  const file = req.file;
+  const userId = req.user.id;
+
+  try {
+    const data = await userService.uploadProfileImage(userId, file);
+
+    res.json(formatUserData(data));
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
 export {
   createUser,
   createMerchant,
@@ -86,4 +99,5 @@ export {
   getAllUsers,
   getUserById,
   getAllCustomers,
+  uploadProfileImage,
 };

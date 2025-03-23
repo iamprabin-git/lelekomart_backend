@@ -1,6 +1,7 @@
 import { ROLE_MERCHANT, ROLE_USER } from "../constants/roles.js";
 import User from "../models/User.js";
 import bcrypt from "bcryptjs";
+import uploadFile from "../utils/file.js";
 
 const createUser = async (data) => {
   const user = await User.create(data);
@@ -70,6 +71,18 @@ const getUserById = async (id) => {
   return user;
 };
 
+const uploadProfileImage = async (userId, file) => {
+  const uploadedFile = await uploadFile(file);
+
+  return await User.findByIdAndUpdate(
+    userId,
+    {
+      profileImageUrl: uploadedFile?.url,
+    },
+    { new: true }
+  );
+};
+
 export default {
   createUser,
   createMerchant,
@@ -78,4 +91,5 @@ export default {
   getAllUsers,
   getUserById,
   getAllCustomers,
+  uploadProfileImage,
 };

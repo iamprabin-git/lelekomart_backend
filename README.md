@@ -137,3 +137,10 @@ Hello -> 987654321iorpoitjwerptwje
 2. Store JWT token in Cookie
 3. Get the token from cookie
 4. Verify the JWT token
+
+## File upload
+1. Get the file from form-data
+2. Store the file temporarily
+3. Upload the file in bucket
+4. Get the file url from bucket
+5. Store file url in the DB

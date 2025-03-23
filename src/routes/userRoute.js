@@ -7,6 +7,7 @@ import {
   getAllUsers,
   getUserById,
   updateUser,
+  uploadProfileImage,
 } from "../controllers/userController.js";
 import auth from "../middlewares/auth.js";
 import roleBasedAuth from "../middlewares/roleBasedAuth.js";
@@ -31,5 +32,7 @@ router.get("/", auth, roleBasedAuth(ROLE_ADMIN), getAllUsers);
 router.get("/customers", auth, roleBasedAuth(ROLE_MERCHANT), getAllCustomers);
 
 router.get("/:id", auth, getUserById);
+
+router.put("/profile/upload", auth, uploadProfileImage);
 
 export default router;
