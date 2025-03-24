@@ -1,5 +1,6 @@
 // Database related tasks
 import Product from "../models/Product.js";
+import uploadFile from "../utils/file.js";
 
 // 1. Sort: {fieldName:ORDER} for e.g {price: -1} 1: ASC | -1: DESC
 // 2. Limit: Max no. of items
@@ -43,14 +44,29 @@ const getProductById = async (id) => {
   return product;
 };
 
-const createProduct = async (data, userId) => {
-  return await Product.create({ ...data, createdBy: userId });
+const createProduct = async (data, files, userId) => {
+  const uploadedFiles = await uploadFile(files);
+
+  return await Product.create({
+    ...data,
+    createdBy: userId,
+    imageUrls: uploadedFiles.map((item) => item?.url),
+  });
 };
 
-const updateProduct = async (id, data) => {
-  return await Product.findByIdAndUpdate(id, data, {
-    new: true,
-  });
+const updateProduct = async (id, data, files) => {
+  const uploadedFiles = await uploadFile(files);
+
+  return await Product.findByIdAndUpdate(
+    id,
+    {
+      ...data,
+      imageUrls: uploadedFiles.map((item) => item?.url),
+    },
+    {
+      new: true,
+    }
+  );
 };
 
 const deleteProduct = async (id) => {
