@@ -2,13 +2,14 @@ import express from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 
-import productRoutes from "./routes/productRoute.js";
 import authRoutes from "./routes/authRoute.js";
-import userRoutes from "./routes/userRoute.js";
+import connectCloudinary from "./config/cloudinary.js";
 import connectDB from "./config/database.js";
 import logger from "./middlewares/logger.js";
-import connectCloudinary from "./config/cloudinary.js";
 import multer from "multer";
+import orderRoutes from "./routes/orderRoute.js";
+import productRoutes from "./routes/productRoute.js";
+import userRoutes from "./routes/userRoute.js";
 
 dotenv.config();
 
@@ -39,6 +40,7 @@ app.get("/", (req, res) => {
 app.use("/api/products", upload.array("images", 5), productRoutes);
 app.use("/api/users", upload.single("image"), userRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/orders", orderRoutes);
 
 app.listen(port, () => {
   console.log(`Server started at port ${port}...`);
