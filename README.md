@@ -143,4 +143,11 @@ Hello -> 987654321iorpoitjwerptwje
 2. Store the file temporarily
 3. Upload the file in bucket
 4. Get the file url from bucket
-5. Store file url in the DB
+5. Store file url in the DBf
+
+## Payment 
+1. Gather required data for payment
+    - User, amount, currency
+2. Payment method integration (for e.g khalti)
+3. Payment status - success/failure, transactionId
+4. Update payment status/results
