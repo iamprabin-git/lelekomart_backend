@@ -5,6 +5,7 @@ import roleBasedAuth from "../middlewares/roleBasedAuth.js";
 import { ROLE_ADMIN } from "../constants/roles.js";
 import {
   checkoutOrder,
+  confirmOrder,
   createOrder,
   deleteOrder,
   getAllOrders,
@@ -27,6 +28,8 @@ router.post("/", auth, createOrder);
 router.put("/:id/status", auth, roleBasedAuth(ROLE_ADMIN), updateOrderStatus);
 
 router.put("/:id/checkout", auth, checkoutOrder);
+
+router.put("/:id/confirm", auth, confirmOrder);
 
 router.delete("/:id", auth, roleBasedAuth(ROLE_ADMIN), deleteOrder);
 

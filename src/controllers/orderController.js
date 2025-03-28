@@ -101,6 +101,22 @@ const checkoutOrder = async (req, res) => {
   }
 };
 
+const confirmOrder = async (req, res) => {
+  const id = req.params.id;
+  const input = req.body;
+
+  try {
+    if (!input.status)
+      return res.status(422).send("Order confirm status is required");
+
+    const order = await orderService.confirmOrder(id, input);
+
+    res.json(order);
+  } catch (error) {
+    res.status(error.statusCode || 500).send(error.message);
+  }
+};
+
 export {
   getAllOrders,
   createOrder,
@@ -109,4 +125,5 @@ export {
   updateOrderStatus,
   deleteOrder,
   checkoutOrder,
+  confirmOrder,
 };

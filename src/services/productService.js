@@ -50,7 +50,7 @@ const createProduct = async (data, files, userId) => {
   return await Product.create({
     ...data,
     createdBy: userId,
-    imageUrls: uploadedFiles.map((item) => item?.url),
+    imageUrls: uploadedFiles?.map((item) => item?.url),
   });
 };
 

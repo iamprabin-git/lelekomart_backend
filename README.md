@@ -151,3 +151,20 @@ Hello -> 987654321iorpoitjwerptwje
 2. Payment method integration (for e.g khalti)
 3. Payment status - success/failure, transactionId
 4. Update payment status/results
+
+
+## Debugging
+1. Root file (src/app.js)
+2. Routes
+3. Middleware
+4. Controller
+5. Service
+6. Helper/util functions
+
+## Semantic coding
+1. Variables, constants, data types, param, args, fileName: Noun
+2. Method, function: verb
+
+## Todos
+- Template (EJS)
+- AI Integration

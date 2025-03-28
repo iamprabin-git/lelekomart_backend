@@ -1,7 +1,7 @@
-import { PASSWORD_REGEX } from "../constants/regex.js";
 import { formatUserData } from "../helpers/dataFormatter.js";
-import authService from "../services/authService.js";
 import { createJWT } from "../utils/jwt.js";
+import { PASSWORD_REGEX } from "../constants/regex.js";
+import authService from "../services/authService.js";
 
 const login = async (req, res) => {
   try {

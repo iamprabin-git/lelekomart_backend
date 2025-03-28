@@ -1,7 +1,9 @@
 import jwt from "jsonwebtoken";
 
 function createJWT(data) {
-  return jwt.sign(data, process.env.JWT_SECRET);
+  return jwt.sign(data, process.env.JWT_SECRET, {
+    expiresIn: 86400,
+  });
 }
 
 async function verifyJWT(authToken) {
