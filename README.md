@@ -166,5 +166,4 @@ Hello -> 987654321iorpoitjwerptwje
 2. Method, function: verb
 
 ## Todos
-- Template (EJS)
 - AI Integration
