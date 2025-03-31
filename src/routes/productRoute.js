@@ -7,6 +7,7 @@ import {
   getProductById,
   getProductsByUser,
   updateProduct,
+  getBrands,
 } from "../controllers/productController.js";
 import auth from "../middlewares/auth.js";
 import roleBasedAuth from "../middlewares/roleBasedAuth.js";
@@ -25,6 +26,7 @@ router.get("/", getAllProducts);
 router.get("/users", auth, getProductsByUser);
 
 router.get("/categories", getCategories);
+router.get("/brands", getBrands);
 
 /**
  * URL: /api/products/:id
