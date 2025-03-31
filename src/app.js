@@ -34,8 +34,10 @@ const port = process.env.PORT || 5000;
 
 app.get("/", (req, res) => {
   res.json({
+    name: "nodejs-20250302",
     status: "OK",
-    version: "1.0.0",
+    version: "1.1.0",
+    url: "https://node-20250302.vercel.app",
     port: port,
   });
 });
