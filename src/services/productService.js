@@ -1,6 +1,8 @@
 // Database related tasks
 import Product from "../models/Product.js";
 import uploadFile from "../utils/file.js";
+import promptGemini from "../utils/gemini.js";
+import { formatProductData } from "../helpers/dataFormatter.js";
 
 // 1. Sort: {fieldName:ORDER} for e.g {price: -1} 1: ASC | -1: DESC
 // 2. Limit: Max no. of items
@@ -41,7 +43,9 @@ const getAllProducts = async (query, userId) => {
 const getProductById = async (id) => {
   const product = await Product.findById(id);
 
-  return product;
+  const geminiResponse = await promptGemini(product);
+
+  return formatProductData(product, geminiResponse);
 };
 
 const createProduct = async (data, files, userId) => {
