@@ -43,16 +43,17 @@ const getAllProducts = async (query, userId) => {
 const getProductById = async (id) => {
   const product = await Product.findById(id);
 
-  const geminiResponse = await promptGemini(product);
-
-  return formatProductData(product, geminiResponse);
+  return formatProductData(product);
 };
 
 const createProduct = async (data, files, userId) => {
   const uploadedFiles = await uploadFile(files);
 
+  const geminiResponse = await promptGemini(data);
+
   return await Product.create({
     ...data,
+    description: geminiResponse,
     createdBy: userId,
     imageUrls: uploadedFiles?.map((item) => item?.url),
   });

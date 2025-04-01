@@ -11,12 +11,12 @@ export function formatUserData(data) {
   };
 }
 
-export function formatProductData(data, geminiPrompt) {
+export function formatProductData(data) {
   return {
     brand: data.brand,
     category: data.category,
     createdAt: data.createdAt,
-    description: geminiPrompt || data.description,
+    description: data.description,
     id: data._id,
     imageUrls: data.imageUrls,
     name: data.name,
