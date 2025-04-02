@@ -35,4 +35,6 @@ router.get("/:id", auth, getUserById);
 
 router.put("/profile/upload", auth, uploadProfileImage);
 
+router.put("/:id/profile-image", auth, uploadProfileImage);
+
 export default router;

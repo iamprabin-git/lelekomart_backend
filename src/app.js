@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
+import cors from "cors";
 
 import authRoutes from "./routes/authRoute.js";
 import connectCloudinary from "./config/cloudinary.js";
@@ -24,6 +25,8 @@ const upload = multer({
 });
 
 app.use(logger);
+
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

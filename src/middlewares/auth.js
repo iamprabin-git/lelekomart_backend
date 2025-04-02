@@ -1,11 +1,19 @@
 import { verifyJWT } from "../utils/jwt.js";
 
 function auth(req, res, next) {
-  const cookie = req.headers.cookie;
+  const authHeader = req.headers.authorization;
 
-  if (!cookie) return res.status(401).send("User not authenticated.");
+  let authToken;
 
-  const authToken = cookie.split("=")[1];
+  if (authHeader && authHeader.startsWith("Bearer ")) {
+    authToken = authHeader.split(" ")[1];
+  } else {
+    const cookie = req.headers.cookie;
+
+    if (!cookie) return res.status(401).send("User not authenticated.");
+
+    authToken = cookie.split("=")[1];
+  }
 
   verifyJWT(authToken)
     .then((data) => {
