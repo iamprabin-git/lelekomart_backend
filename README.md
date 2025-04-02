@@ -166,4 +166,5 @@ Hello -> 987654321iorpoitjwerptwje
 2. Method, function: verb
 
 ## Todos
-- AI Integration
+- Connect with frontend
+- Localstorage -> Authtoken

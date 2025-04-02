@@ -20,7 +20,7 @@ const login = async (req, res) => {
 
     res.cookie("authToken", token);
 
-    res.json(formattedData);
+    res.json({ ...formattedData, token });
   } catch (error) {
     res.status(error.statusCode || 500).send(error.message);
   }
@@ -56,7 +56,7 @@ const register = async (req, res) => {
 
     res.cookie("authToken", token);
 
-    res.json(formattedData);
+    res.json({ ...formattedData, token });
   } catch (error) {
     res.status(error.statusCode || 500).send(error.message);
   }
@@ -80,9 +80,13 @@ const forgotPassword = async (req, res) => {
 
   if (!email) return res.status(422).send("Email is required.");
 
-  const data = await authService.forgotPassword(email);
+  try {
+    const data = await authService.forgotPassword(email);
 
-  res.json(data);
+    res.json(data);
+  } catch (error) {
+    res.json(error);
+  }
 };
 
 const resetPassword = async (req, res) => {
