@@ -164,7 +164,3 @@ Hello -> 987654321iorpoitjwerptwje
 ## Semantic coding
 1. Variables, constants, data types, param, args, fileName: Noun
 2. Method, function: verb
-
-## Todos
-- Connect with frontend
-- Localstorage -> Authtoken
