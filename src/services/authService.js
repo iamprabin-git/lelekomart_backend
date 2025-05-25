@@ -83,6 +83,8 @@ const resetPassword = async (userId, token, password) => {
     expiresAt: { $gt: Date.now() },
   });
 
+  console.log(data);
+
   if (!data || data.token !== token) {
     throw {
       statusCode: 400,
