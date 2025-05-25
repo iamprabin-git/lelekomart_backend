@@ -81,9 +81,7 @@ const resetPassword = async (userId, token, password) => {
   const data = await ResetPassword.findOne({
     userId,
     expiresAt: { $gt: Date.now() },
-  });
-
-  console.log(data);
+  }).sort({ expiresAt: -1 });
 
   if (!data || data.token !== token) {
     throw {
