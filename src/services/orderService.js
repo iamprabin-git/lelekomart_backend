@@ -12,7 +12,9 @@ const getAllOrders = async (query) => {
   return await Order.find(statusQuery)
     .sort({ createdAt: -1 })
     .populate("orderItems.product")
-    .populate("user", ["name", "email", "phone", "address"]);
+    .populate("user", ["name", "email", "phone", "address"])
+    .populate("payment", ["paymentMethod", "status"])
+    .lean();
 };
 
 const getOrdersByUser = async (query, userId) => {
@@ -22,7 +24,9 @@ const getOrdersByUser = async (query, userId) => {
   })
     .sort({ createdAt: -1 })
     .populate("orderItems.product")
-    .populate("user", ["name", "email", "phone", "address"]);
+    .populate("user", ["name", "email", "phone", "address"])
+    .populate("payment", ["paymentMethod", "status"])
+    .lean();
 };
 
 const getOrderById = async (id) => {
