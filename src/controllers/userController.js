@@ -23,7 +23,7 @@ const createMerchant = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
-    await getUserById(req.params.id);
+    await getUserById(req);
 
     const user = await userService.updateUser(req.params.id, req.body);
 
