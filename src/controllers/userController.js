@@ -68,7 +68,10 @@ const getUserById = async (req, res) => {
 
     if (!user) return res.status(404).send("User not found.");
 
-    if (loggedInUser.id != user.id && !user.roles.includes(ROLE_MERCHANT)) {
+    if (
+      loggedInUser.id != user.id &&
+      !loggedInUser.roles.includes(ROLE_MERCHANT)
+    ) {
       return res.status(403).send("Access denied");
     }
 
