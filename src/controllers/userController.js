@@ -23,6 +23,8 @@ const createMerchant = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
+    await getUserById(req.params.id);
+
     const user = await userService.updateUser(req.params.id, req.body);
 
     res.json(user);
