@@ -1,4 +1,4 @@
-import { ROLE_MERCHANT } from "../constants/roles.js";
+import { ROLE_ADMIN, ROLE_MERCHANT } from "../constants/roles.js";
 import { formatUserData } from "../helpers/dataFormatter.js";
 import userService from "../services/userService.js";
 
@@ -22,12 +22,24 @@ const createMerchant = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
+  const id = req.params.id;
+  const loggedInUser = req.user;
+
   try {
-    await getUserById(req);
+    const user = await userService.getUserById(id);
 
-    const user = await userService.updateUser(req.params.id, req.body);
+    if (!user) return res.status(404).send("User not found.");
 
-    res.json(user);
+    if (
+      loggedInUser.id != user.id &&
+      !loggedInUser.roles.includes(ROLE_ADMIN)
+    ) {
+      return res.status(403).send("Access denied");
+    }
+
+    const data = await userService.updateUser(id, req.body);
+
+    res.json(data);
   } catch (error) {
     res.status(error.statusCode || 500).send(error.message);
   }
