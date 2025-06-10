@@ -26,12 +26,7 @@ const upload = multer({
 
 app.use(logger);
 
-app.use(
-  cors({
-    origin: process.env.APP_URL,
-    credentials: true,
-  })
-);
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
