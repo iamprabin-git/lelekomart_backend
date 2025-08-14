@@ -37,10 +37,10 @@ const port = process.env.PORT || 5000;
 
 app.get("/", (req, res) => {
   res.json({
-    name: "nodejs-20250302",
+    name: "lelekomart-backend",
     status: "OK",
     version: "1.1.0",
-    url: "https://node-20250302.vercel.app",
+    url: "https://lelekomart-backend.vercel.app",
     port: port,
   });
 });
