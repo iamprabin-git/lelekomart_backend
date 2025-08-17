@@ -2,7 +2,6 @@ import express from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import cors from "cors";
-
 import authRoutes from "./routes/authRoute.js";
 import connectCloudinary from "./config/cloudinary.js";
 import connectDB from "./config/database.js";

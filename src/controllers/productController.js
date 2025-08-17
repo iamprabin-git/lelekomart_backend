@@ -3,14 +3,26 @@ import { formatProductData } from "../helpers/dataFormatter.js";
 import productService from "../services/productService.js";
 
 const getAllProducts = async (req, res) => {
-  const products = await productService.getAllProducts(req.query);
+  try {
+    const products = await productService.getAllProducts(req.query);
 
-  const formattedProducts = products.map((product) =>
-    formatProductData(product)
-  );
+    if (!products) {
+      return res.status(404).json({ message: "No products found" });
+    }
 
-  res.json(formattedProducts);
+    const formattedProducts = products.map((product) =>
+      formatProductData(product)
+    );
+
+    res.json(formattedProducts);
+  } catch (error) {
+    console.error("❌ Error in getAllProducts:", error);
+    res.status(500).json({
+      message: error.message || "Something went wrong",
+    });
+  }
 };
+
 
 const getProductsByUser = async (req, res) => {
   const products = await productService.getAllProducts(req.query, req.user.id);
