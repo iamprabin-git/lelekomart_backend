@@ -11,6 +11,7 @@ import orderRoutes from "./routes/orderRoute.js";
 import productRoutes from "./routes/productRoute.js";
 import userRoutes from "./routes/userRoute.js";
 import viewRoutes from "./routes/viewRoute.js";
+import config from "./config/index.js";
 
 dotenv.config();
 
@@ -25,7 +26,7 @@ const upload = multer({
 
 app.use(logger);
 
-app.use(cors());
+app.use(cors({origin:config.appUrl}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
