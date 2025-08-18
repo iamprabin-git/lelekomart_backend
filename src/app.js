@@ -28,7 +28,8 @@ const upload = multer({
 app.use(logger);
 
 app.use(cors({
-  origin: config.appUrl
+  origin: ["http://localhost:3000", "https://your-frontend-domain.vercel.app"],
+  credentials: true, // if you use cookies/auth
 }));
 
 app.use(bodyParser.json());
