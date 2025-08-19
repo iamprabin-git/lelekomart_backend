@@ -49,11 +49,12 @@ app.get("/", (req, res) => {
   });
 });
 
-app.use("/api/products", upload.array("images", 5), productRoutes);
-app.use("/api/users", upload.single("image"), userRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/page", viewRoutes);
+
 
 app.listen(port, () => {
   console.log(`Server started at port ${port}...`);

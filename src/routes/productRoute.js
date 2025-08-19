@@ -1,4 +1,5 @@
 import express from "express";
+import multer from "multer";
 import {
   createProduct,
   deleteProduct,
@@ -16,6 +17,10 @@ import roleBasedAuth from "../middlewares/roleBasedAuth.js";
 import { ROLE_ADMIN, ROLE_MERCHANT } from "../constants/roles.js";
 
 const router = express.Router();
+
+// 🔹 Multer config (store in memory or disk, adjust as you need)
+const storage = multer.memoryStorage(); // or multer.diskStorage({...})
+const upload = multer({ storage });
 
 /**
  * URL: /api/products
@@ -44,15 +49,29 @@ router.get("/:id", getProductById);
  * URL: /api/products
  * Method: POST
  * Create product
+ * (with up to 5 images)
  */
-router.post("/", auth, roleBasedAuth(ROLE_MERCHANT), createProduct);
+router.post(
+  "/",
+  auth,
+  roleBasedAuth(ROLE_MERCHANT),
+  upload.array("images", 5),
+  createProduct
+);
 
 /**
  * URL: /api/products/:id
  * Method: PUT
  * Update product
+ * (optionally with images)
  */
-router.put("/:id", auth, roleBasedAuth(ROLE_MERCHANT), updateProduct);
+router.put(
+  "/:id",
+  auth,
+  roleBasedAuth(ROLE_MERCHANT),
+  upload.array("images", 5),
+  updateProduct
+);
 
 /**
  * URL: /api/products/:id
