@@ -27,9 +27,23 @@ const upload = multer({
 
 app.use(logger);
 
+// ✅ Dynamic CORS
+const allowedOrigins = (process.env.ALLOWED_ORIGINS || "")
+  .split(",")
+  .map(o => o.trim());
+
 app.use(cors({
-  origin: ["http://localhost:3000", "https://your-frontend-domain.vercel.app"],
-  credentials: true, // if you use cookies/auth
+  origin: function (origin, callback) {
+    // Allow requests with no origin (Postman, curl, mobile apps)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("CORS blocked: " + origin));
+    }
+  },
+  credentials: true,
 }));
 
 app.use(bodyParser.json());
@@ -55,7 +69,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/page", viewRoutes);
 
-
 app.listen(port, () => {
-  console.log(`Server started at port ${port}...`);
+  console.log(`🚀 Server started at port ${port}...`);
 });
+
+export default app;
