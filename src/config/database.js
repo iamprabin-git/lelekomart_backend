@@ -4,15 +4,12 @@ import config from "./index.js";
 
 const connectDB = async () => {
   try {
-    // Add connection options
-    const conn = await mongoose.connect(config.mongoUrl, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    const conn = await mongoose.connect(config.mongoUrl);
+
     console.log(`✅ MongoDB Connected: ${conn.connection.host} successfully....!!`);
   } catch (error) {
-    console.error(`MongoDB Connection Error: ${error.message}`);
-    process.exit(1);
+    console.error(`❌ MongoDB Connection Error: ${error.message}`);
+    process.exit(1); // Exit process with failure
   }
 };
 
